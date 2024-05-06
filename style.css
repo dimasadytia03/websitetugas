@@ -6,6 +6,7 @@ body {
   }
   
   .container {
+    font-family: Arial, sans-serif;
     margin: 20px;
   }
   
@@ -17,37 +18,48 @@ body {
   }
   
   .header {
-    overflow: hidden; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #14BCE6;
-    position: relative;
-    flex: 1;
-    margin: 10px;
-    max-width: 2000px;
-    height: 100px;
-    margin: 10px;
-    border-radius: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, .3);
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 100%;
-    .container {
-        overflow: hidden;/* M enonaktifkan gulir hanya di container ini */
-    }
+  
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(45deg, #0abb80, #03a9f4);
+      position: relative;
+      flex: 1;
+      margin: 10px;
+      max-width: 2000px;
+      height: 100px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-size: 1.2rem;
+      color: #000000;
+      transition: all 0.3s ease;
   }
+  
+  .colorful-box:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 0, 0, .7);
+  }
+  
+  .colorful-box .container {
+      overflow: hidden;
+  }
+  
+    
+  
   
   .sidebar {
     overflow: hidden; 
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
     font-style: normal;
     font-size: 110%;
-    background: #14BCE6;
+    background: #413f3f;
     position: relative;
     flex: 1;
     margin: 1px;
-    max-width: 150px;
-    height: 650px;
+    max-width: 250  px;
+    height: 720px;
     margin: 10px;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(190, 0, 0, 0.3);
@@ -88,4 +100,52 @@ body {
     text-decoration: none;
     margin: 0 10px;
 }
- 
+.tugas1 {
+    color: #555;
+    text-decoration: none;
+    margin: 0 10px;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+    text-decoration: none;
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f3f3;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .tugas1 {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      color: #333; /* Warna teks default */
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      color: #FF0000; /* Warna teks untuk heading */
+    }
+    
+    p {
+      color: #008000; /* Warna teks untuk paragraf */
+    }
+    
+    blockquote {
+      color: #0000FF; /* Warna teks untuk kutipan */
+    }
+    
+    pre {
+      color: #800080; /* Warna teks untuk teks terformat */
+    }
+    
+}
+.tugas2 {
+  color: #555;
+  margin: 0 10px;
+}
+
+

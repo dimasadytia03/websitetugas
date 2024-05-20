@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Zodiak</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('motor1.jpeg'); /* Gambar latar belakang */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid aliceblue;
+            border-radius: 5px;
+            background-color: aquamarine;
+        }
+
+        input[type="number"], select, input[type="submit"] {
+            width: 95%;
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Game Zodiak</h2>
+        <form id="inputForm">
+            <select id="month">
+                <option value="1">Januari</option>
+                <option value="2">Februari</option>
+                <option value="3">Maret</option>
+                <option value="4">April</option>
+                <option value="5">Mei</option>
+                <option value="6">Juni</option>
+                <option value="7">Juli</option>
+                <option value="8">Agustus</option>
+                <option value="9">September</option>
+                <option value="10">Oktober</option>
+                <option value="11">November</option>
+                <option value="12">Desember</option>
+            </select>
+            <input type="number" id="day" placeholder="Masukkan Tanggal" min="1" max="31">
+            <input type="submit" value="Lihat Ramalan">
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById("month").addEventListener("change", function() {
+            var month = parseInt(this.value);
+            var dayInput = document.getElementById("day");
+            var maxDay = 31;
+
+            if (month === 4 || month === 6 || month === 9 || month === 11) {
+                maxDay = 30;
+            } else if (month === 2) {
+                var year = new Date().getFullYear();
+                if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+                    maxDay = 29; // Tahun kabisat
+                } else {
+                    maxDay = 28;
+                }
+            }
+
+            dayInput.max = maxDay;
+            dayInput.value = Math.min(dayInput.value, maxDay);
+        });
+
+        document.getElementById("inputForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get input values
+            var month = parseInt(document.getElementById("month").value);
+            var day = parseInt(document.getElementById("day").value);
+
+            // Determine zodiac sign based on input date
+            var zodiacSign = determineZodiacSign(month, day);
+
+            // Get horoscope based on zodiac sign
+            var horoscope = getHoroscope(zodiacSign);
+
+            // Display zodiac sign and horoscope
+            var resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = "<h3>Zodiak Anda: " + zodiacSign + "</h3>";
+            resultDiv.innerHTML += "<h4>Horoskop Hari Ini:</h4>";
+            resultDiv.innerHTML += "<p>" + horoscope + "</p>";
+        });
+
+        // Function to determine zodiac sign
+        function determineZodiacSign(month, day) {
+            if ((month == 3 && day >= 21) || (month == 4 && day <= 19)) {
+                return "Aries";
+            } else if ((month == 4 && day >= 20) || (month == 5 && day <= 20)) {
+                return "Taurus";
+            } else if ((month == 5 && day >= 21) || (month == 6 && day <= 20)) {
+                return "Gemini";
+            } else if ((month == 6 && day >= 21) || (month == 7 && day <= 22)) {
+                return "Cancer";
+            } else if ((month == 7 && day >= 23) || (month == 8 && day <= 22)) {
+                return "Leo";
+            } else if ((month == 8 && day >= 23) || (month == 9 && day <= 22)) {
+                return "Virgo";
+            } else if ((month == 9 && day >= 23) || (month == 10 && day <= 22)) {
+                return "Libra";
+            } else if ((month == 10 && day >= 23) || (month == 11 && day <= 21)) {
+                return "Scorpio";
+            } else if ((month == 11 && day >= 22) || (month == 12 && day <= 21)) {
+                return "Sagittarius";
+            } else if ((month == 12 && day >= 22) || (month == 1 && day <= 19)) {
+                return "Capricorn";
+            } else if ((month == 1 && day >= 20) || (month == 2 && day <= 18)) {
+                return "Aquarius";
+            } else if ((month == 2 && day >= 19) || (month == 3 && day <= 20)) {
+                return "Pisces";
+            }
+        }
+
+        // Function to get horoscope based on zodiac sign
+        function getHoroscope(zodiacSign) {
+            switch(zodiacSign) {
+                case "Aries":
+                    return "Ramalan kesehatan: Anda akan memiliki energi yang tinggi hari ini. Asmara: Hubungan asmara Anda akan berjalan lancar. Keuangan: Ada kemungkinan keuntungan keuangan. Karier: Fokuslah pada proyek kerja Anda.";
+                case "Taurus":
+                    return "Ramalan kesehatan: Perhatikan pola makan dan istirahat yang cukup. Asmara: Hari ini adalah waktu yang tepat untuk berbicara terbuka dengan pasangan. Keuangan: Tetapkan tujuan keuangan jangka panjang. Karier: Berikan yang terbaik dalam pekerjaan Anda.";
+                case "Gemini":
+                    return "Ramalan kesehatan: Perhatikan kesehatan mental Anda. Asmara: Waktunya untuk merencanakan liburan bersama pasangan. Keuangan: Atur ulang anggaran Anda untuk menghindari pemborosan. Karier: Berikan perhatian khusus pada detail.";
+                case "Cancer":
+                    return "Ramalan kesehatan: Berolahraga secara teratur untuk menjaga kesehatan fisik. Asmara: Komunikasikan perasaan Anda dengan jujur ​​kepada pasangan. Keuangan: Evaluasi kebutuhan keuangan jangka panjang Anda. Karier: Jangan ragu untuk mengejar kesempatan baru.";
+                case "Leo":
+                    return "Ramalan kesehatan: Hindari stres berlebihan dengan berolahraga dan meditasi. Asmara: Waktunya untuk merayakan hubungan yang kokoh dengan pasangan. Keuangan: Manfaatkan peluang investasi yang mungkin muncul. Karier: Tingkatkan keterampilan komunikasi Anda.";
+                case "Virgo":
+                    return "Ramalan kesehatan: Prioritaskan pola makan sehat dan istirahat yang cukup. Asmara: Jaga kepercayaan dalam hubungan Anda dengan pasangan. Keuangan: Buat rencana tabungan untuk masa depan. Karier: Pertimbangkan untuk mengambil tanggung jawab tambahan di tempat kerja.";
+                case "Libra":
+                    return "Ramalan kesehatan: Luangkan waktu untuk merawat diri sendiri dan menghilangkan stres. Asmara: Waktunya untuk menghadapi masalah hubungan dengan pasangan. Keuangan: Buat strategi untuk mengelola utang dan pengeluaran. Karier: Jangan ragu untuk berbagi ide-ide kreatif Anda.";
+                case "Scorpio":
+                    return "Ramalan kesehatan: Waspadai gejala kelelahan dan stres. Asmara: Temukan keseimbangan antara kebutuhan pribadi dan pasangan. Keuangan: Pertimbangkan untuk merencanakan investasi jangka panjang. Karier: Terimalah tantangan baru di tempat kerja.";
+                case "Sagittarius":
+                    return "Ramalan kesehatan: Jaga kebugaran fisik dengan olahraga rutin. Asmara: Waktunya untuk berbagi impian dan tujuan dengan pasangan. Keuangan: Evaluasi strategi keuangan Anda untuk mencapai tujuan. Karier: Jadilah proaktif dalam mengejar kesempatan karier.";
+                case "Capricorn":
+                    return "Ramalan kesehatan: Tetapkan rutinitas sehat untuk menjaga kesehatan fisik dan mental. Asmara: Berbicaralah dengan jujur ​​dan terbuka dengan pasangan. Keuangan: Fokuslah pada pembentukan keuangan jangka panjang. Karier: Ambil langkah-langkah untuk mencapai tujuan karier Anda.";
+                case "Aquarius":
+                    return "Ramalan kesehatan: Luangkan waktu untuk istirahat dan relaksasi. Asmara: Jaga komunikasi yang terbuka dengan pasangan. Keuangan: Tinjau kembali anggaran Anda untuk menghindari pemborosan. Karier: Jelajahi peluang baru di tempat kerja.";
+                case "Pisces":
+                    return "Ramalan kesehatan: Pertahankan keseimbangan dalam kegiatan fisik dan mental. Asmara: Berikan perhatian khusus pada kebutuhan emosional pasangan. Keuangan: Atur ulang prioritas keuangan Anda untuk masa depan yang lebih stabil. Karier: Manfaatkan kreativitas Anda dalam proyek kerja.";
+                default:
+                    return "";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perhitungan Gaji</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url('motor1.jpeg'); /* Gambar latar belakang */
+        background-size: cover;
+        background-position: center;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 500px;
+        margin: 50px auto;
+        background-color: aquamarine;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+    label {
+        font-weight: bold;
+    }
+    input[type="number"] {
+        width: 95%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #0abb80;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #854581;
+    }
+    #hasil {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #00ff00d5;
+        border-radius: 5px;
+    }
+</style>
+<script>
+    function hitungGaji() {
+        var gajiPerHari = 50000;
+        var lemburPerJam = 25000;
+        var uangMakan = 5000;
+        var hariKerja = parseInt(document.getElementById("hariKerjaInput").value);
+        var jamLembur = parseInt(document.getElementById("jamLemburInput").value);
+        
+           // Hitung gaji lembur
+    var gajiLembur = jamLembur * lemburPerJam;
+
+// Hitung gaji total
+var gajiTotal = (gajiPerHari + uangMakan) * hariKerja + gajiLembur;
+
+// Menampilkan hasil
+document.getElementById("hasil").innerHTML = "Hari Kerja: " + hariKerja + "<br>Jam Lembur: " + jamLembur + "<br>Gaji Lembur: Rp " + gajiLembur + "<br>Uang Makan: Rp " + (uangMakan * hariKerja) + "<br>Gaji Total: Rp " + gajiTotal;
+}
+
+</script>
+</head>
+<body>
+    <div class="container">
+        <h2>Perhitungan Gaji</h2>
+        <label for="hariKerjaInput">Jumlah Hari Kerja:</label>
+        <input type="number" id="hariKerjaInput" name="hariKerjaInput"><br>
+        <label for="jamLemburInput">Jumlah Jam Lembur:</label>
+        <input type="number" id="jamLemburInput" name="jamLemburInput"><br><br>
+        <button onclick="hitungGaji()">Hitung Gaji</button><br><br>
+        <div id="hasil"></div>
+    </div>
+</body>
+</html>

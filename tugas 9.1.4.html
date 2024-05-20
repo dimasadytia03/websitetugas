@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Penerimaan Pegawai</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url('motor1.jpeg'); /* Gambar latar belakang */
+        background-size: cover;
+        background-position: center;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 500px;
+        margin: 50px auto;
+        background-color: aquamarine;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+    label {
+        font-weight: bold;
+    }
+    input[type="radio"] {
+        margin-right: 10px;
+    }
+    input[type="number"] {
+        width: 95%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    #hasil {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #f0f0f0;
+        border-radius: 5px;
+    }
+</style>
+<script>
+    function cekPenerimaan() {
+        var jk = document.querySelector('input[name="jk"]:checked').value;
+        var tinggiBadan = parseInt(document.getElementById("tinggiBadanInput").value);
+        var beratBadan = parseInt(document.getElementById("beratBadanInput").value);
+        var ipk = parseFloat(document.getElementById("ipkInput").value);
+        var pendidikan = document.querySelector('input[name="pendidikan"]:checked').value;
+        
+        // Cek syarat penerimaan
+        var syaratPenerimaan = false;
+        if (jk === "laki-laki") {
+            if (tinggiBadan >= 170 && tinggiBadan <= 179 && beratBadan === (tinggiBadan - 110) && ipk >= 3 && ipk <= 4 && (pendidikan === "D3" || pendidikan === "S1")) {
+                syaratPenerimaan = true;
+            }
+        } else if (jk === "perempuan") {
+            if (tinggiBadan >= 160 && tinggiBadan <= 170 && beratBadan === (tinggiBadan - 110) && ipk >= 3 && ipk <= 4 && (pendidikan === "D3" || pendidikan === "S1")) {
+                syaratPenerimaan = true;
+            }
+        }
+
+        // Menampilkan hasil
+        if (syaratPenerimaan) {
+            document.getElementById("hasil").innerHTML = "Selamat! Anda diterima sebagai pegawai.";
+        } else {
+            document.getElementById("hasil").innerHTML = "Maaf, Anda tidak memenuhi syarat penerimaan sebagai pegawai.";
+        }
+    }
+</script>
+</head>
+<body>
+    <div class="container">
+        <h2>Penerimaan Pegawai</h2>
+        <label for="jk">Jenis Kelamin:</label>
+        <input type="radio" id="laki-laki" name="jk" value="laki-laki">
+        <label for="laki-laki">Laki-laki</label>
+        <input type="radio" id="perempuan" name="jk" value="perempuan">
+        <label for="perempuan">Perempuan</label><br>
+        <label for="tinggiBadanInput">Tinggi Badan (cm):</label>
+        <input type="number" id="tinggiBadanInput" name="tinggiBadanInput"><br>
+        <label for="beratBadanInput">Berat Badan (kg):</label>
+        <input type="number" id="beratBadanInput" name="beratBadanInput"><br>
+        <label for="ipkInput">IPK:</label>
+        <input type="number" step="0.01" id="ipkInput" name="ipkInput"><br>
+        <label for="pendidikan">Pendidikan:</label>
+        <input type="radio" id="D3" name="pendidikan" value="D3">
+        <label for="D3">D3</label>
+        <input type="radio" id="S1" name="pendidikan" value="S1">
+        <label for="S1">S1</label><br><br>
+        <button onclick="cekPenerimaan()">Cek Penerimaan</button><br><br>
+        <div id="hasil"></div>
+    </div>
+</body>
+</html>

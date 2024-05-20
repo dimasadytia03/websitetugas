@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Konversi Nilai</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(90deg, #4CAF50, #2c3e50); /* Gradient latar belakang */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .container {
+        max-width: 400px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Bayangan */
+    }
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+    label {
+        font-weight: bold;
+        color: #333; /* Warna teks label */
+    }
+    input[type="number"] {
+        width: 95%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color:  #0abb80;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease; /* Animasi perubahan warna latar belakang */
+    }
+    button:hover {
+        background-color: #1a0000;
+    }
+    #hasil {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #15dd30c4;
+        border-radius: 5px;
+        color: #fff; /* Warna teks hasil */
+    }
+</style>
+<script>
+    function konversiNilai() {
+        // Mendapatkan nilai dari input
+        var nilai = parseFloat(document.getElementById("nilaiInput").value);
+        
+        // Melakukan konversi nilai
+        var grade;
+        if (nilai >= 80 && nilai <= 100) {
+            grade = 'A';
+        } else if (nilai >= 70 && nilai < 80) {
+            grade = 'B';
+        } else if (nilai >= 60 && nilai < 70) {
+            grade = 'C';
+        } else if (nilai >= 50 && nilai < 60) {
+            grade = 'D';
+        } else {
+            grade = 'E';
+        }
+
+        // Menampilkan hasil
+        document.getElementById("hasil").innerHTML = "Nilai Anda: " + nilai + "<br>Grade: " + grade;
+    }
+</script>
+</head>
+<body>
+    <div class="container">
+        <h2>Konversi Nilai</h2>
+        <label for="nilaiInput">Masukkan Nilai:</label>
+        <input type="number" id="nilaiInput" name="nilaiInput"><br><br>
+        <button onclick="konversiNilai()">Konversi</button><br><br>
+        <div id="hasil"></div>
+    </div>
+</body>
+</html>

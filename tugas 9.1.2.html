@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Penjualan Barang</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 100;
+        padding: 80 ;
+        background-image: url('motor1.jpeg'); /* Gambar latar belakang */
+        background-size: cover;
+        background-position: center;
+    }
+    .container {
+        max-width: 500px;
+        margin: 50px auto;
+        background-color: aquamarine;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+    label {
+        font-weight: bold;
+        color: #333; /* Warna teks label */
+    }
+    input[type="text"],
+    input[type="number"] {
+        width: 90%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color:  #0abb80;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    #hasil {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: rgba(9, 223, 38, 0.8); /* Warna latar belakang hasil dengan transparansi */
+        border-radius: 5px;
+        color: #fff; /* Warna teks hasil */
+    }
+</style>
+<script>
+    function hitungTotal() {
+        var nama = document.getElementById("namaInput").value;
+        var harga = parseFloat(document.getElementById("hargaInput").value);
+        var jumlah = parseInt(document.getElementById("jumlahInput").value);
+        
+        // Hitung total bayar
+        var totalBayar = harga * jumlah;
+        
+        // Diskon jika pembelian >= 3
+        if (jumlah >= 3) {
+            var diskon = 0.1 * harga * jumlah;
+            totalBayar -= diskon;
+        }
+
+        // Menampilkan hasil
+        document.getElementById("hasil").innerHTML = "Nama Barang: " + nama + "<br>Harga Barang: " + harga + "<br>Jumlah: " + jumlah + "<br>Total Bayar: " + totalBayar;
+    }
+</script>
+</head>
+<body>
+    <div class="container">
+        <h2>Penjualan Barang</h2>
+        <label for="namaInput">Nama Barang:</label>
+        <input type="text" id="namaInput" name="namaInput"><br>
+        <label for="hargaInput">Harga Barang:</label>
+        <input type="number" id="hargaInput" name="hargaInput"><br>
+        <label for="jumlahInput">Jumlah Barang:</label>
+        <input type="number" id="jumlahInput" name="jumlahInput"><br><br>
+        <button onclick="hitungTotal()">Hitung Total</button><br><br>
+        <div id="hasil"></div>
+    </div>
+</body>
+</html>
